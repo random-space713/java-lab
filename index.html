@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Eclipse IDE Clone</title>
+    <!-- Tailwind for layout utilities -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tahoma:wght@400;700&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-eclipse-bg text-text-main h-screen w-screen overflow-hidden flex flex-col">
+
+    <!-- Title Bar -->
+    <div
+        class="h-7 title-bar-gradient flex items-center justify-between w-full shrink-0 border-b border-gray-400 ui-node select-none pr-0 bg-[#eff4f9]">
+        <div class="flex items-center pl-2 overflow-hidden">
+            <!-- Optional App Icon could go here, for now just text -->
+            <div class="font-normal text-xs text-gray-700 truncate" id="window-title"
+                style="font-family: 'Segoe UI', sans-serif;">eclipse-workspace - Eclipse IDE</div>
+        </div>
+
+        <!-- Windows Controls -->
+        <div class="flex items-center h-full">
+            <div class="h-full w-10 flex items-center justify-center hover:bg-[#E5E5E5] cursor-default transition-colors text-gray-600"
+                title="Minimize">
+                <span class="material-symbols-outlined" style="font-size: 16px;">remove</span>
+            </div>
+            <div class="h-full w-10 flex items-center justify-center hover:bg-[#E5E5E5] cursor-default transition-colors text-gray-600"
+                title="Maximize">
+                <span class="material-symbols-outlined" style="font-size: 14px;">check_box_outline_blank</span>
+            </div>
+            <div class="h-full w-11 flex items-center justify-center hover:bg-[#e81123] hover:text-white cursor-default transition-colors text-gray-600 group"
+                title="Close">
+                <span class="material-symbols-outlined" style="font-size: 16px;">close</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Bar -->
+    <div class="h-6 flex items-center px-1 space-x-0 bg-[#F5F5F5] border-b border-[#D4D4D4] shrink-0 text-tiny ui-node">
+        <div class="px-2 py-0.5 hover:bg-selection-blue cursor-default">File</div>
+        <div class="px-2 py-0.5 hover:bg-selection-blue cursor-default">Edit</div>
+        <div class="px-2 py-0.5 hover:bg-selection-blue cursor-default">Source</div>
+        <div class="px-2 py-0.5 hover:bg-selection-blue cursor-default">Refactor</div>
+        <div class="px-2 py-0.5 hover:bg-selection-blue cursor-default">Navigate</div>
+        <div class="px-2 py-0.5 hover:bg-selection-blue cursor-default">Search</div>
+        <div class="px-2 py-0.5 hover:bg-selection-blue cursor-default">Project</div>
+        <div class="px-2 py-0.5 hover:bg-selection-blue cursor-default">Run</div>
+        <div class="px-2 py-0.5 hover:bg-selection-blue cursor-default">Window</div>
+        <div class="px-2 py-0.5 hover:bg-selection-blue cursor-default">Help</div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="h-8 flex items-center px-2 bg-[#F0F0F0] border-b border-[#A0A0A0] shrink-0 shadow-inset-white ui-node">
+        <div class="flex items-center space-x-0.5 px-1">
+            <button class="p-0.5 hover:border hover:border-blue-300 hover:bg-blue-50 rounded-sm"><span
+                    class="material-symbols-outlined text-blue-600 toolbar-icon">note_add</span></button>
+            <button class="p-0.5 hover:border hover:border-blue-300 hover:bg-blue-50 rounded-sm"><span
+                    class="material-symbols-outlined text-orange-600 toolbar-icon">save</span></button>
+            <button class="p-0.5 hover:border hover:border-blue-300 hover:bg-blue-50 rounded-sm"><span
+                    class="material-symbols-outlined text-orange-600 toolbar-icon">save_as</span></button>
+            <button class="p-0.5 hover:border hover:border-blue-300 hover:bg-blue-50 rounded-sm"><span
+                    class="material-symbols-outlined text-gray-600 toolbar-icon">print</span></button>
+        </div>
+        <div class="toolbar-separator"></div>
+        <div class="flex items-center space-x-0.5 px-1">
+            <button class="p-0.5 hover:border hover:border-blue-300 hover:bg-blue-50 rounded-sm"><span
+                    class="material-symbols-outlined text-green-700 toolbar-icon">bug_report</span></button>
+            <button class="p-0.5 hover:border hover:border-blue-300 hover:bg-blue-50 rounded-sm"><span
+                    class="material-symbols-outlined text-green-600 toolbar-icon">play_arrow</span></button>
+            <button class="p-0.5 hover:border hover:border-blue-300 hover:bg-blue-50 rounded-sm"><span
+                    class="material-symbols-outlined text-red-600 toolbar-icon">stop</span></button>
+        </div>
+        <div class="toolbar-separator"></div>
+        <div class="flex items-center space-x-0.5 px-1">
+            <button class="p-0.5 hover:border hover:border-blue-300 hover:bg-blue-50 rounded-sm"><span
+                    class="material-symbols-outlined text-yellow-600 toolbar-icon">history</span></button>
+        </div>
+        <div class="flex-1"></div>
+        <div class="flex items-center bg-white border border-[#A0A0A0] rounded-sm px-2 h-5 mx-2 shadow-inner">
+            <span class="text-gray-400 italic text-[10px]">Quick Access</span>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="flex-1 flex overflow-hidden p-1 bg-eclipse-bg">
+        <!-- Package Explorer -->
+        <div
+            class="w-64 flex flex-col mr-1 shadow-panel bg-white border border-[#A0A0A0] rounded-md overflow-hidden ui-node">
+            <div class="h-6 panel-header-gradient flex items-center justify-between px-2 border-b border-[#A0A0A0]">
+                <div class="flex items-center space-x-1">
+                    <span class="material-symbols-outlined icon-xs text-orange-400">folder_open</span>
+                    <span class="font-bold text-gray-700">Package Explorer</span>
+                </div>
+            </div>
+            <div id="package-explorer" class="flex-1 bg-white p-1 overflow-auto">
+                <div class="flex items-center py-0.5 px-1 font-bold text-gray-600">
+                    <span class="material-symbols-outlined text-[14px] mr-1">arrow_drop_down</span>
+                    <span class="material-symbols-outlined text-[16px] text-blue-400 mr-1">folder</span>
+                    <span>Programs</span>
+                </div>
+                <div id="file-list" class="pl-4">
+                    <!-- Loaded by script.js -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Editor Area -->
+        <div class="flex-1 flex flex-col min-w-0 mr-1">
+            <div class="flex-1 flex flex-col bg-eclipse-bg min-w-0 mb-1 overflow-hidden min-h-0">
+                <div class="h-6 flex items-end px-1 space-x-0 border-b border-[#A0A0A0] ui-node">
+                    <div id="editor-tab"
+                        class="tab-active px-3 py-1 flex items-center space-x-1 min-w-fit h-[26px] top-[1px]">
+                        <span class="material-symbols-outlined icon-xs text-blue-500">code</span>
+                        <span class="text-tiny" id="active-filename">Program.java</span>
+                        <span
+                            class="material-symbols-outlined icon-xs hover:bg-red-100 hover:text-red-500 rounded cursor-pointer ml-1"
+                            style="font-size: 12px;">close</span>
+                    </div>
+                    <div class="flex-1"></div>
+                    <button id="copy-btn"
+                        class="mb-0.5 mr-1 px-1.5 py-0 bg-[#F0F0F0] border border-[#A0A0A0] hover:bg-white text-tiny flex items-center rounded-sm cursor-pointer shadow-sm transition-colors text-gray-700"
+                        title="Copy Code">
+                        <span class="material-symbols-outlined icon-xs mr-1"
+                            style="font-size: 12px;">content_copy</span> Copy
+                    </button>
+                </div>
+                <!-- The Scrollable Code Editor -->
+                <div class="editor-container">
+                    <div id="line-numbers" class="line-numbers">
+                        <!-- Loaded by script.js -->
+                    </div>
+                    <div id="code-area" class="code-area" contenteditable="true" spellcheck="false">
+                        <!-- Loaded by script.js -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Panel -->
+            <div class="h-40 flex flex-col bg-eclipse-bg shrink-0 ui-node">
+                <div class="h-6 flex items-end px-0 space-x-0.5 border-b border-[#A0A0A0]">
+                    <div class="tab-inactive px-2 py-0.5 flex items-center space-x-1 h-[22px]">
+                        <span class="material-symbols-outlined icon-xs text-red-500">error</span>
+                        <span class="text-tiny">Problems</span>
+                    </div>
+                    <div
+                        class="tab-active px-2 py-1 flex items-center space-x-1 shadow-sm h-[24px] top-[1px] bg-white border-b-white">
+                        <span class="material-symbols-outlined icon-xs text-orange-400">search</span>
+                        <span class="font-bold text-tiny">Console</span>
+                    </div>
+                </div>
+                <div class="flex-1 bg-white border border-t-0 border-[#A0A0A0] p-2 overflow-auto shadow-panel"
+                    id="bottom-console">
+                    <!-- Logic logs here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Outline Area -->
+        <div
+            class="w-48 flex flex-col shadow-panel bg-white border border-[#A0A0A0] rounded-md overflow-hidden ui-node">
+            <div class="h-6 panel-header-gradient flex items-center justify-between px-2 border-b border-[#A0A0A0]">
+                <div class="flex items-center space-x-1">
+                    <span class="material-symbols-outlined icon-xs text-green-600">list</span>
+                    <span class="font-bold text-gray-700">Outline</span>
+                </div>
+            </div>
+            <div class="flex-1 bg-white p-1 overflow-auto" id="outline-content">
+                <!-- Loaded by script.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Bar -->
+    <div
+        class="h-5 flex items-center justify-between px-2 bg-[#F0F0F0] border-t border-[#A0A0A0] text-tiny text-gray-600 shrink-0 ui-node">
+        <div class="flex items-center space-x-4">
+            <span>Writable</span>
+            <span>Smart Insert</span>
+        </div>
+        <div class="flex items-center space-x-2 border-l border-gray-300 pl-2">
+            <span class="material-symbols-outlined icon-xs text-yellow-500">lightbulb</span>
+        </div>
+    </div>
+
+    <!-- Windows 11 Styled Taskbar (Dark) -->
+    <div class="h-12 w-full flex items-center justify-between px-3 border-t border-white/10 relative z-50 shrink-0 select-none shadow-[0_-1px_0_rgba(0,0,0,0.3)] backdrop-blur-md"
+        style="background-color: #222020; font-family: 'Segoe UI', sans-serif;">
+        <!-- Left spacer (invisible) to balance center alignment -->
+        <div class="w-32 hidden sm:block"></div>
+
+        <!-- Center Icons -->
+        <div class="flex items-center space-x-0 absolute left-1/2 transform -translate-x-1/2 h-full">
+            <!-- Windows System Icons (Start, Search, Task View, Widgets, Chat) -->
+            <div class="flex items-center pr-0">
+                <img src="taskbar-icons.png"
+                    class="h-[60px] object-contain cursor-default select-none -translate-y-[1px]"
+                    alt="Windows Taskbar Icons">
+            </div>
+
+            <!-- Eclipse Icon (Active) -->
+            <div class="h-[40px] w-[40px] bg-white/10 rounded flex items-center justify-center cursor-pointer border-b-[3px] border-blue-400 transition-all shadow-sm box-border"
+                title="Eclipse IDE - Active">
+                <img src="eclipse-icon.png" class="h-[36px] w-[36px] object-contain drop-shadow-sm">
+            </div>
+        </div>
+
+        <!-- Right Tray -->
+        <div class="flex items-center space-x-1 h-full text-white">
+            <div class="p-1 hover:bg-white/10 rounded cursor-pointer transition-colors" title="Show hidden icons">
+                <span class="material-symbols-outlined text-[10px] text-gray-200 transform rotate-180"
+                    style="font-size: 12px;">expand_more</span>
+            </div>
+
+            <!-- Quick Settings (Wifi, Volume, Battery) -->
+            <div class="flex items-center px-2 py-1 hover:bg-white/10 rounded cursor-pointer transition-colors"
+                title="Internet access, Speakers, Battery status" style="height: 36px;">
+                <img src="tray-icons.png" class="h-[86px] object-contain grayscale brightness-200">
+            </div>
+
+            <!-- Clock -->
+            <div class="flex flex-col items-end justify-center px-2 hover:bg-white/10 rounded cursor-pointer transition-colors text-right"
+                id="clock-container" title="Date & Time" style="height: 36px; min-width: 70px;">
+                <div id="taskbar-time" class="text-xs font-normal text-white leading-tight tracking-wide">--:-- --</div>
+                <div id="taskbar-date" class="text-[11px] text-gray-200 leading-tight">--/--/----</div>
+            </div>
+
+            <div
+                class="w-1.5 h-full opacity-0 hover:opacity-100 hover:bg-white/10 transition-opacity ml-1 border-l border-gray-600">
+            </div> <!-- Show desktop slice -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

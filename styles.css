@@ -1,0 +1,181 @@
+/* Main Dull Gray Background and Variables */
+:root {
+    --eclipse-bg: #E1E1E1;
+    --eclipse-light: #F0F0F0;
+    --eclipse-border: #A0A0A0;
+    --eclipse-border-light: #D4D4D4;
+    --selection-blue: #B5D5FF;
+    --selection-blue-dark: #3399FF;
+    --text-main: #333333;
+}
+
+body {
+    font-family: 'Tahoma', 'Arial', sans-serif;
+    font-size: 11px;
+    -webkit-font-smoothing: none;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--eclipse-bg);
+}
+
+/* UI elements should not be selectable */
+.ui-node {
+    user-select: none;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-left: 1px solid #d4d4d4;
+}
+::-webkit-scrollbar-thumb {
+    background: #cdcdcd;
+    border: 1px solid white;
+    box-shadow: inset 1px 1px 0px rgba(0,0,0,0.1);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+::-webkit-scrollbar-button {
+    background-color: #f1f1f1;
+    height: 14px;
+    width: 14px;
+    display: block;
+    border: 1px solid #d4d4d4;
+}
+
+/* Icons */
+.material-symbols-outlined {
+    font-size: 16px;
+    vertical-align: middle;
+}
+.toolbar-icon {
+    font-size: 18px;
+    opacity: 0.9;
+}
+.icon-xs {
+    font-size: 14px;
+}
+
+/* Tabs */
+.tab-active {
+    background: white;
+    border-top: 1px solid var(--eclipse-border);
+    border-left: 1px solid var(--eclipse-border);
+    border-right: 1px solid var(--eclipse-border);
+    border-radius: 4px 4px 0 0;
+    font-weight: bold;
+    position: relative;
+    z-index: 10;
+    box-shadow: inset 0 2px 0 #fff;
+    cursor: default;
+}
+.tab-inactive {
+    background: linear-gradient(to bottom, #f3f3f3, #e1e1e1);
+    border: 1px solid var(--eclipse-border);
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+    color: #666;
+    margin-top: 2px;
+    cursor: pointer;
+}
+
+/* Layout Utilities */
+.toolbar-separator {
+    width: 2px;
+    height: 16px;
+    background: var(--eclipse-border);
+    margin: 0 4px;
+    border-right: 1px solid white;
+}
+.gradient-bg {
+    background: linear-gradient(to bottom, #F8F8F8 0%, #E8E8E8 100%);
+}
+.panel-header-gradient {
+    background: linear-gradient(to bottom, #F5F7FC 0%, #E1E6F6 100%);
+}
+.title-bar-gradient {
+    background: linear-gradient(to right, #d4d4d4, #e1e1e1);
+}
+
+/* Package Explorer */
+.package-explorer-item {
+    display: flex;
+    align-items: center;
+    padding: 2px 4px;
+    cursor: default;
+    white-space: nowrap;
+    border: 1px solid transparent;
+}
+.package-explorer-item:hover {
+    background-color: #e5efff;
+}
+.package-explorer-item.selected {
+    background-color: var(--selection-blue-dark);
+    color: white;
+    border: 1px dotted #000;
+}
+
+/* Editor */
+.editor-container {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border: 1px solid var(--eclipse-border);
+    border-top: none;
+    flex: 1; /* Take up all available space in the flex-1 parent */
+    height: 100%; /* Force height to match parent */
+    overflow: hidden; /* Contain the scrollable children */
+    position: relative;
+    box-shadow: inset 1px 1px 0px white, 1px 1px 1px rgba(0,0,0,0.1);
+}
+
+.line-numbers {
+    width: 40px;
+    background-color: #F0F0F0;
+    border-right: 1px solid var(--eclipse-border-light);
+    color: #999;
+    text-align: right;
+    padding-right: 8px;
+    padding-top: 4px;
+    font-family: 'Courier New', Consolas, monospace;
+    font-size: 11px;
+    line-height: 1.5;
+    user-select: none;
+    flex-shrink: 0;
+    overflow: hidden; /* Sync scroll via JS or keep simple */
+}
+
+.code-area {
+    flex: 1;
+    overflow: auto; /* Allow both vertical and horizontal scroll */
+    padding: 4px;
+    white-space: pre;
+    font-family: 'Courier New', Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #000;
+    outline: none;
+    user-select: text;
+}
+
+.code-area code {
+    display: block;
+}
+
+/* Glassmorphism/Premium Shadows */
+.shadow-panel {
+    box-shadow: inset 1px 1px 0px white, 1px 1px 1px rgba(0,0,0,0.1);
+}
+.shadow-inset-white {
+    box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.6);
+}
