@@ -154,22 +154,18 @@ public class Student1 {
     String usn, name, branch;
     long ph;
 
-    // Constructor: Sets default values
+    // Default Constructor
     Student1() {
         usn = name = branch = "no value";
         ph = 0;
     }
 
-    // Fixed the read method to use Scanner directly
-    void read_data(Scanner sc) {
-        System.out.println("Enter student USN:");
-        usn = sc.next();
-        System.out.println("Enter student Name:");
-        name = sc.next();
-        System.out.println("Enter student Branch:");
-        branch = sc.next();
-        System.out.println("Enter student Phone number:");
-        ph = sc.nextLong();
+    // This is exactly how you want it: parameters assigned to class variables
+    void read_data(String u, String n, String b, long p) {
+        usn = u;
+        name = n;
+        branch = b;
+        ph = p;
     }
 
     void display() {
@@ -181,13 +177,28 @@ public class Student1 {
 
         System.out.println("Enter number of records:");
         int no = sc.nextInt();
-        
+        sc.nextLine(); // "The Buffer Clearer" - prevents skipping the first USN input
+
         Student1[] s = new Student1[no];
 
         for (int i = 0; i < s.length; i++) {
             System.out.println("Enter record for Student " + (i + 1));
+            
+            System.out.println("Enter student USN:");
+            String u = sc.nextLine();
+            
+            System.out.println("Enter student Name:");
+            String n = sc.nextLine();
+            
+            System.out.println("Enter student Branch:");
+            String b = sc.nextLine();
+            
+            System.out.println("Enter student Phone number:");
+            long p = sc.nextLong();
+            sc.nextLine(); // Clear buffer after reading long
+
             s[i] = new Student1();
-            s[i].read_data(sc); // Passing the scanner inside to do the work
+            s[i].read_data(u, n, b, p); // Passing the variables exactly as requested
         }
 
         System.out.println("\nUSN \t\t NAME \t\t BRANCH \t PHONE NO");
@@ -862,4 +873,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateClock, 1000);
     updateClock();
 });
+
 
