@@ -376,9 +376,7 @@ class Exception_handle {
             System.out.println("Result = " + result);
         } catch (ArithmeticException e) {
             System.out.println("Exception caught: Divide by zero error " + e);
-        } finally {
-            input.close();
-        }
+        } 
     }
 }`
     },
@@ -873,5 +871,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateClock, 1000);
     updateClock();
 });
+
 
 
