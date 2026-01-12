@@ -87,21 +87,18 @@ class Product {
         this.name = "Unnamed Product";
         this.price = 0.0;
         this.quantity = 0;
-        System.out.println("Default Constructor called: " + name);
     }
 
     public Product(String name, double price, int quantity) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
-        System.out.println("Parameterized Constructor called: " + name);
     }
 
-    public Product(Product product) {
-        this.name = product.name;
-        this.price = product.price;
-        this.quantity = product.quantity;
-        System.out.println("Copy Constructor called: " + name);
+    public Product(Product p) { // changed parameter to 'p' for brevity
+        this.name = p.name;
+        this.price = p.price;
+        this.quantity = p.quantity;
     }
 
     public void displayProduct() {
@@ -110,38 +107,41 @@ class Product {
 }
 
 class Inventory {
-    private ArrayList<Product> products;
+    // Renamed 'products' to 'items' to avoid confusing it with the Class name
+    private ArrayList<Product> items;
 
     public Inventory() {
-        products = new ArrayList<>();
+        items = new ArrayList<>();
     }
 
-    public void addProduct(Product product) {
-        products.add(product);
-        System.out.println("Product added to inventory: " + product.name);
+    public void addProduct(Product obj) {
+        items.add(obj);
+        System.out.println("Item added: " + obj.name);
     }
 
     public void displayInventory() {
-        System.out.println("\\n--- Inventory Details ---");
-        for (Product product : products) {
-            product.displayProduct();
+        System.out.println("\n--- Inventory Details ---");
+        // Read as: "For every Product 'p' in our 'items' list..."
+        for (Product p : items) {
+            p.displayProduct();
         }
     }
 }
 
 public class Lab_program1b {
     public static void main(String[] args) {
-        Inventory storeInventory = new Inventory();
+        Inventory myInventory = new Inventory();
 
-        Product defaultProduct = new Product();
-        Product specificProduct = new Product("Laptop", 1200.50, 5);
-        Product copiedProduct = new Product(specificProduct);
+        // Using 'obj' names as requested
+        Product obj1 = new Product();
+        Product obj2 = new Product("Laptop", 1200.50, 5);
+        Product obj3 = new Product(obj2); // Creating a copy of obj2
 
-        storeInventory.addProduct(defaultProduct);
-        storeInventory.addProduct(specificProduct);
-        storeInventory.addProduct(copiedProduct);
+        myInventory.addProduct(obj1);
+        myInventory.addProduct(obj2);
+        myInventory.addProduct(obj3);
 
-        storeInventory.displayInventory();
+        myInventory.displayInventory();
     }
 }`
     },
@@ -154,28 +154,46 @@ public class Student1 {
     String usn, name, branch;
     long ph;
 
-    void read(Scanner sc) {
-        System.out.print("Enter USN, Name, Branch, Phone: ");
-        usn = sc.next(); name = sc.next(); branch = sc.next(); ph = sc.nextLong();
+    // Constructor: Sets default values
+    Student1() {
+        usn = name = branch = "no value";
+        ph = 0;
+    }
+
+    // Fixed the read method to use Scanner directly
+    void read_data(Scanner sc) {
+        System.out.println("Enter student USN:");
+        usn = sc.next();
+        System.out.println("Enter student Name:");
+        name = sc.next();
+        System.out.println("Enter student Branch:");
+        branch = sc.next();
+        System.out.println("Enter student Phone number:");
+        ph = sc.nextLong();
     }
 
     void display() {
-        System.out.printf("%-10s %-10s %-10s %-15d\\n", usn, name, branch, ph);
+        System.out.println(usn + "\t\t" + name + "\t\t" + branch + "\t\t" + ph);
     }
 
-    public static void main(String[] args) {
+    public static void main(String args[]) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter number of records: ");
-        int n = sc.nextInt();
-        Student1[] s = new Student1[n];
 
-        for (int i = 0; i < n; i++) {
+        System.out.println("Enter number of records:");
+        int no = sc.nextInt();
+        
+        Student1[] s = new Student1[no];
+
+        for (int i = 0; i < s.length; i++) {
+            System.out.println("Enter record for Student " + (i + 1));
             s[i] = new Student1();
-            s[i].read(sc);
+            s[i].read_data(sc); // Passing the scanner inside to do the work
         }
 
-        System.out.println("USN        NAME       BRANCH     PHONE");
-        for (Student1 st : s) st.display();
+        System.out.println("\nUSN \t\t NAME \t\t BRANCH \t PHONE NO");
+        for (int i = 0; i < s.length; i++) {
+            s[i].display();
+        }
     }
 }`
     },
@@ -844,3 +862,4 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateClock, 1000);
     updateClock();
 });
+
